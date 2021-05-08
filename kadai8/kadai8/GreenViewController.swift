@@ -9,17 +9,16 @@ import UIKit
 
 class GreenViewController: UIViewController {
 
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var slider: UISlider!
+    @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var slider: UISlider!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presentingViewController?.beginAppearanceTransition(false, animated: animated)
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         slider.setValue(delegate.sliderValue, animated: false)
-        self.label.text = "\(self.slider.value)"
+        label.text = "\(slider.value)"
     }
 
     @IBAction func changeSlider(_ sender: Any) {
@@ -27,7 +26,6 @@ class GreenViewController: UIViewController {
            return
         }
         delegate.sliderValue = slider.value
-        self.label.text = "\(self.slider.value)"
+        label.text = "\(slider.value)"
     }
-    
 }
